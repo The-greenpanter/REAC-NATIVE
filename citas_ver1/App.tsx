@@ -1,5 +1,4 @@
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -26,7 +25,9 @@ const App = () => {
         Nueva Domi
       </Text>
       </Pressable>
-      <Modal>
+      <Modal animationType='slide'
+      visible={false}
+      >
         <Text>Desde Modal</Text>
       </Modal>
     </SafeAreaView>
