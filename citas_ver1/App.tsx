@@ -8,6 +8,7 @@ import {
   Text,
   Pressable,
   View,
+  Modal,
 } from 'react-native';
 
 const App = () => {
@@ -25,6 +26,9 @@ const App = () => {
         Nueva Domi
       </Text>
       </Pressable>
+      <Modal>
+        <Text>Desde Modal</Text>
+      </Modal>
     </SafeAreaView>
   );
 };
