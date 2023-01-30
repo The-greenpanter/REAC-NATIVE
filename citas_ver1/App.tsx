@@ -25,15 +25,15 @@ const nuevaCitaHandeler = () => {
         <Text style={styles.tituloBold}>Despachos Mendez </Text>
       </Text>
         <Pressable
-        onPress={nuevaCitaHandeler}
+        onPress={ () => setModalVisible(true)}
         style={styles.btnNuevacita}>
       <Text style={styles.textBtn}>
         Nueva Domi
       </Text>
       </Pressable>
-      <Modal animationType='slide'
-      visible={false}
-      >
+      <Modal
+      animationType='slide'
+      visible = {modalVisible}>
         <Text>Desde Modal</Text>
       </Modal>
     </SafeAreaView>
