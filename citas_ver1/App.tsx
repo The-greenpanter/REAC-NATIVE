@@ -11,6 +11,12 @@ import {
 } from 'react-native';
 
 const App = () => {
+// aqui se colocan los Hooks
+const [modalVisible, setModalVisible] = useState(false);
+
+const nuevaCitaHandeler = () => {
+  console.log('Tappeaste');
+};
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.titulo}>
@@ -19,7 +25,7 @@ const App = () => {
         <Text style={styles.tituloBold}>Despachos Mendez </Text>
       </Text>
         <Pressable
-        // onPress={ nuevaCitaHandeler }
+        onPress={nuevaCitaHandeler}
         style={styles.btnNuevacita}>
       <Text style={styles.textBtn}>
         Nueva Domi
