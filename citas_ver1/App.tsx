@@ -29,7 +29,7 @@ const App = () => {
         >
         <Text style={styles.textBtn}>Nueva Domi</Text>
       </Pressable>
-      <Formulario modalVisible={modalVisible} />
+      <Formulario modalVisible={modalVisible} nuevaCitaHandeler={nuevaCitaHandeler} />
     </SafeAreaView>
   );
 };
