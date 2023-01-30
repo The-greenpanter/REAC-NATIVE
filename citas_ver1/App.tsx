@@ -9,14 +9,13 @@ import {
   View,
   Modal,
 } from 'react-native';
-
+import Formulario from './src/components/Formulario';
 const App = () => {
-// aqui se colocan los Hooks
-const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
-const nuevaCitaHandeler = () => {
-  console.log('Tappeaste');
-};
+  const nuevaCitaHandeler = () => {
+    console.log('Pressable');
+  }
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.titulo}>
@@ -24,18 +23,13 @@ const nuevaCitaHandeler = () => {
         Aplicativo {'        '}
         <Text style={styles.tituloBold}>Despachos Mendez </Text>
       </Text>
-        <Pressable
-        onPress={ () => setModalVisible(true)}
-        style={styles.btnNuevacita}>
-      <Text style={styles.textBtn}>
-        Nueva Domi
-      </Text>
+      <Pressable
+        style={styles.btnNuevacita}
+        onPress={() => setModalVisible(true)}
+        >
+        <Text style={styles.textBtn}>Nueva Domi</Text>
       </Pressable>
-      <Modal
-      animationType='slide'
-      visible = {modalVisible}>
-        <Text>Desde Modal</Text>
-      </Modal>
+      <Formulario modalVisible={modalVisible} />
     </SafeAreaView>
   );
 };
