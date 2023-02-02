@@ -40,6 +40,7 @@ const Formulario = ({ modalVisible }) => {
               keyboardType="numeric"
               keyboardAppearance="dark"
               placeholder="Telefono"
+              maxLength={10}
               value={telefonocx}
               onChangeText={settelefonocx}
             />
@@ -63,16 +64,18 @@ const Formulario = ({ modalVisible }) => {
               value={email}
               onChangeText={setemail}
             />
-            <Text style={styles.label}>Datos Opcionales</Text>
+            <Text style={styles.label}>
+              Especificaciones del pedido
+            </Text>
             <TextInput
-              style={styles.input}
-              keyboardType="email-address"
+              style={[styles.input, styles.sintomasInput]}
+              keyboardType="default"
               keyboardAppearance="dark"
-              placeholder="detalles"
+              placeholder="Porteria de vidrio... "
               value={details}
               onChangeText={setdetails}
               multiline={true}
-              numberOfLines={5}
+              numberOfLines={6}
             />
           </View>
         </ScrollView>
@@ -111,9 +114,12 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: 'white',
-    padding: 10,
+    padding: 13,
     borderRadius: 10,
     marginBottom: 15,
+  },
+  sintomasInput: {
+    height: 100,
   },
 });
 
