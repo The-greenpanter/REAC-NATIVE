@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import DatePicker from 'react-native-date-picker';
 import {
   Modal,
   Text,
@@ -7,22 +8,48 @@ import {
   TextInput,
   View,
   ScrollView,
+  Pressable,
+  Alert,
 } from 'react-native';
-const Formulario = ({ modalVisible }) => {
-
+const Formulario = ({modalVisible, setModalVisible, setPacientes}) => {
   const [paciente, setpaciente] = useState('');
   const [telefonocx, settelefonocx] = useState('');
   const [address, setaddress] = useState('');
   const [email, setemail] = useState('');
   const [details, setdetails] = useState('');
+  const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
+  const newDomi = () => {
+    // Validar
+
+    if ([paciente, telefonocx, address, email, details, date].includes('')) {
+      Alert.alert('Error', 'Todos los campos son obligatorios');
+      return;
+    }
+    const nuevoPaciente = {
+      paciente,
+      telefonocx,
+      address,
+      email,
+      details,
+      date,
+    };
+    setPacientes(nuevoPaciente);
+  }
   return (
     <Modal animationType="slide" visible={modalVisible}>
       <SafeAreaView style={styles.container}>
         <ScrollView>
-          <Text style={styles.titulo}>
-            Nuevo{'   '}
-            <Text style={styles.tituloBold}>Domi</Text>
-          </Text>
+          <View style={styles.header}>
+            <Pressable style={styles.btnCancelar}
+              onPress={() => setModalVisible(!modalVisible)}>
+              <Text style={styles.txtCancelar}>Cancelar</Text>
+            </Pressable>
+            <Text style={styles.titulo}>
+              Nuevo{'   '}
+              <Text style={styles.tituloBold}>Domi</Text>
+            </Text>
+          </View>
 
           <View style={styles.campo}>
             <Text style={styles.label}>Nombre de quien recibe</Text>
@@ -33,6 +60,7 @@ const Formulario = ({ modalVisible }) => {
               placeholder="Nombre de quien recibe"
               value={paciente}
               onChangeText={setpaciente}
+              theme="dark"
             />
             <Text style={styles.label}>Telefono</Text>
             <TextInput
@@ -78,6 +106,26 @@ const Formulario = ({ modalVisible }) => {
               numberOfLines={6}
             />
           </View>
+          <Pressable style={[styles.btnNuevacita]}
+            onPress={() => setOpen(true)}>
+            <Text style={[styles.label, styles.agendar]}>Agendar</Text>
+
+            <DatePicker
+              modal
+              open={open}
+              date={date}
+              mode="date"
+              onConfirm={(date) => {
+                setOpen(false)
+                setDate(date) 
+                newDomi()
+              }
+              }
+              onCancel={() => {
+                setOpen(false)
+              }}
+            />
+          </Pressable>
         </ScrollView>
       </SafeAreaView>
     </Modal>
@@ -88,6 +136,22 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#6D28D9',
     flex: 1,
+  },
+  header: {
+    textAlign: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+  btnCancelar: {
+    backgroundColor: 'transparent',
+    padding: 5,
+    marginTop: 5,
+    marginHorizontal: 7,
+    borderRadius: 10,
+  },
+  txtCancelar: {
+    color: '#fff',
+    textDecorationLine: 'underline',
   },
   titulo: {
     fontSize: 30,
@@ -120,6 +184,23 @@ const styles = StyleSheet.create({
   },
   sintomasInput: {
     height: 100,
+  },
+  btnNuevacita: {
+    backgroundColor: '#000',
+    padding: 6,
+    marginTop: 1,
+    marginBottom: 10,
+    marginHorizontal: 20,
+    borderRadius: 10,
+  },
+  agendar: {
+    textAlign: 'center',
+    color: '#FFFFFF',
+    fontSize: 20,
+    textTransform: 'uppercase',
+    fontWeight: '400',
+    fontFamily: 'PingFangTC-Thin',
+    letterSpacing: 4.5,
   },
 });
 
