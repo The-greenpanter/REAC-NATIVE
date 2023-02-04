@@ -11,7 +11,7 @@ import {
   Pressable,
   Alert,
 } from 'react-native';
-const Formulario = ({modalVisible, setModalVisible, setPacientes}) => {
+const Formulario = ({modalVisible, setModalVisible, setPacientes,pacientes}) => {
   const [paciente, setpaciente] = useState('');
   const [telefonocx, settelefonocx] = useState('');
   const [address, setaddress] = useState('');
@@ -34,7 +34,14 @@ const Formulario = ({modalVisible, setModalVisible, setPacientes}) => {
       details,
       date,
     };
-    setPacientes(nuevoPaciente);
+    setPacientes([...pacientes, nuevoPaciente]);
+    setModalVisible(!modalVisible);
+    setpaciente('')
+    settelefonocx('')
+    setaddress('')
+    setemail('')
+    setdetails('')
+    setDate(new Date)
   }
   return (
     <Modal animationType="slide" visible={modalVisible}>
@@ -119,6 +126,7 @@ const Formulario = ({modalVisible, setModalVisible, setPacientes}) => {
                 setOpen(false)
                 setDate(date) 
                 newDomi()
+                
               }
               }
               onCancel={() => {
